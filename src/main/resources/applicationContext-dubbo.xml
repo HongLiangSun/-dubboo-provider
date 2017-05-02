@@ -6,9 +6,9 @@
 	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<dubbo:application name="${dubbo.application}" />
-	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />
+	<dubbo:registry protocol="zookeeper"  address="${zookeeper.address}" />
 	<dubbo:monitor protocol="registry"/>
-	<dubbo:protocol name="dubbo" port="8888" threads="500" />
-	<dubbo:service timeout="${dubbo.timeout}"  interface="dubbo.service.api.IDemoApi" ref="IDemoService" />
-	<dubbo:service timeout="${dubbo.timeout}"  interface="dubbo.service.api.IDemo2Api" ref="IDemo2Service" />
+	<dubbo:protocol dispatcher="all" name="dubbo"  threadpool="fixed" port="8888" threads="100" />
+	<dubbo:service timeout="${dubbo.timeout}"  cache="lru"  interface="dubbo.service.api.IDemoApi" ref="IDemoService" />
+	<dubbo:service timeout="${dubbo.timeout}"  mock="" interface="dubbo.service.api.IDemo2Api" ref="IDemo2Service" />
 </beans>
